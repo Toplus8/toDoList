@@ -26,7 +26,7 @@ const Tasks = ({tasks, setTasks}) => {
       </div> 
       <h3>Tareas acabadas:</h3> 
          { endedTasks.map((endTask, index)=> (
-            <div>
+            <div class="taskContainer">
               {endTask}
             </div>
           ))}
