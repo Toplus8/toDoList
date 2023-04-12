@@ -15,7 +15,6 @@ function App() {
      < Nav />
      <br/>
     < NewTask tasks={ tasks } setTasks={ setTasks } />
-    
     < Tasks tasks={ tasks } setTasks={ setTasks }/>
     < Footer />
    </div>
