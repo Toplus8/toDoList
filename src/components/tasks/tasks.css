@@ -2,6 +2,7 @@
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     width:800px;
 }
 .taskContainer{
@@ -10,4 +11,13 @@
     border:2px solid black;
     padding: 15px;
     margin:2px;
+}
+.taskEndedContainer{
+    width:150px;
+    height:50px;
+    border:2px solid black;
+    padding: 15px;
+    margin:2px;
+    opacity:0.2;
+    
 }
