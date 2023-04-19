@@ -9,30 +9,30 @@ const Tasks = ({tasks, setTasks}) => {
   const [endedTasks, setEndedTasks] = useState([]);
   const [counter, setCounter] = useState([]);
   //función de finalización de tareas
-  const endTask = (number)=>{
-    if(!counter.includes(number)){
-      setEndedTasks(endedTasks.concat(tasks[number])); 
-      document.getElementById(number).style.opacity = "0.2";
-      setCounter(counter.concat(number));
+  const endTask = (data)=>{
+    if(!endedTasks.includes(data)){
+      console.log(data)
+      setEndedTasks(endedTasks.concat(data));
+      document.getElementById(data).style.opacity = "0.2";
+      /*setCounter(counter.concat(number));*/
     }/*else{
       setCounter(counter.filter(counterNumber => counterNumber != number))
     }*/
   }   
-  const recoverTask = (number)=>{
-    document.getElementById(counter[number]).style.opacity = "1";
+  const recoverTask = (data)=>{
+    document.getElementById(data).style.opacity = "1";
     const newObjeto = [...endedTasks];
     //ejemplo filter: const resultado = animales.filter(animal => animal != 'oso');
-    const result = newObjeto.filter(endedTask => endedTask != endedTasks[counter[number]]);
+    const result = newObjeto.filter(endedTask => endedTask != data);
     setEndedTasks(result);
-    
   }
   return (
     <div> 
       <h3>Tareas activas:</h3>
       <div className="tasks">
         {tasks.map((task, index) => (
-          <div id ={index} className="taskContainer" onClick={() => {
-            endTask(index);
+          <div id ={task} key={task} className="taskContainer" onClick={() => {
+            endTask(task);
           }}>
               Tarea {index+1}:
               &nbsp;{task} 
@@ -43,8 +43,8 @@ const Tasks = ({tasks, setTasks}) => {
       <h3>Tareas acabadas:</h3> 
       <div className='tasks'>
         {endedTasks.map((endTask, index)=> (
-          <div className="taskContainer" onClick={() => {
-            recoverTask(index);
+          <div id={endTask} className="taskContainer" key={endTask} onClick={() => {
+            recoverTask(endTask);
           }}>
             Tarea finalizada: {endTask}
           </div>
