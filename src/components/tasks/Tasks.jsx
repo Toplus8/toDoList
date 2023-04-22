@@ -7,17 +7,24 @@ import {v4} from 'uuid'; /*No usado */
 const Tasks = ({tasks, setTasks}) => {
   // State para acabar las tareas.
   const [endedTasks, setEndedTasks] = useState([]);
-  const [counter, setCounter] = useState([]);
+  
+  const [updatedTasks, setUpdatedTasks] = useState([])
   //función de finalización de tareas
   const endTask = (data)=>{
     if(!endedTasks.includes(data)){
-      console.log(data)
       setEndedTasks(endedTasks.concat(data));
       document.getElementById(data).style.opacity = "0.2";
-      /*setCounter(counter.concat(number));*/
-    }/*else{
-      setCounter(counter.filter(counterNumber => counterNumber != number))
-    }*/
+      const datos=[...tasks]
+      const result= datos.filter(task => task != data);
+      //setUpdatedTasks(result);
+      //console.log(" Lo que tiene update ",datos)
+      
+      //setUpdatedTasks(...updatedTasks,data)
+      //setTasks(updatedTasks);
+      //console.log(tasks+" sin el "+ data)
+      //setTasks(tasks.concat(data));
+      //console.log(tasks+" concatenado")
+    }
   }   
   const recoverTask = (data)=>{
     document.getElementById(data).style.opacity = "1";
@@ -25,6 +32,7 @@ const Tasks = ({tasks, setTasks}) => {
     //ejemplo filter: const resultado = animales.filter(animal => animal != 'oso');
     const result = newObjeto.filter(endedTask => endedTask != data);
     setEndedTasks(result);
+    console.log(result);
   }
   return (
     <div> 
@@ -34,7 +42,7 @@ const Tasks = ({tasks, setTasks}) => {
           <div id ={task} key={task} className="taskContainer" onClick={() => {
             endTask(task);
           }}>
-              Tarea {index+1}:
+              Tarea:
               &nbsp;{task} 
           </div>
            

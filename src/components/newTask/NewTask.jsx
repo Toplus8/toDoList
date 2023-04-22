@@ -19,7 +19,6 @@ const NewTask = ({tasks, setTasks}) => {
                 < br/>
                 {errors.dataTasks?.type === "required" && <span style ={{color:"red"}}>  El campo no puede estar vacío</span>}
                 {errors.dataTasks?.type === "maxLength" && <span style ={{color:"red"}}> Máximo de texto excedido</span>}
-                {errors.dataTasks?.includes}
             </form>
         </div>
   )
