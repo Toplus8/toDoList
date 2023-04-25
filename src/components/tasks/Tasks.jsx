@@ -23,13 +23,15 @@ const Tasks = ({tasks, setTasks}) => {
 
   //Función de recuperación de tareas 
   const recoverTask = (data)=>{
-    document.getElementById(data).style.opacity = "1";
     const newObjeto = [...endedTasks];
     const newObjeto2 = [...updatedTasks];
     //ejemplo filter: const resultado = animales.filter(animal => animal != 'oso');
     const result = newObjeto.filter(endedTask => endedTask != data);
+    //Reactivamos el elemento eliminado en la lista
     document.getElementById(data).style.display = "block";
+    //Borramos el elemento de la lista de tareas acabadas
     setEndedTasks(result);
+    //quitamos el elemento del final de la cola
     const result2 = newObjeto2.filter(updatedTask => updatedTask != data);
     setUpdatedTasks(result2);
    
@@ -47,6 +49,7 @@ const Tasks = ({tasks, setTasks}) => {
           </div>
            
         ))}
+        {/*Tareas finalizadas al final del listado de tareas */}
         {updatedTasks.map((updatedTask, index) => (
           <div id ={updatedTask} key={updatedTask} className="taskContainer2">
               Tarea:
