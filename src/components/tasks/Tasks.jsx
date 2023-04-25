@@ -9,30 +9,30 @@ const Tasks = ({tasks, setTasks}) => {
   const [endedTasks, setEndedTasks] = useState([]);
   
   const [updatedTasks, setUpdatedTasks] = useState([])
+
   //función de finalización de tareas
   const endTask = (data)=>{
     if(!endedTasks.includes(data)){
       setEndedTasks(endedTasks.concat(data));
-      document.getElementById(data).style.opacity = "0.2";
-      const datos=[...tasks]
-      const result= datos.filter(task => task != data);
-      //setUpdatedTasks(result);
-      //console.log(" Lo que tiene update ",datos)
-      
-      //setUpdatedTasks(...updatedTasks,data)
-      //setTasks(updatedTasks);
-      //console.log(tasks+" sin el "+ data)
-      //setTasks(tasks.concat(data));
-      //console.log(tasks+" concatenado")
+      document.getElementById(data).style.display = "none";
+
+      //Esto nos mostrará las tareas que hemos marcado como acabadas al final de la lista.
+      setUpdatedTasks(updatedTasks.concat(data));
     }
-  }   
+  }  
+
+  //Función de recuperación de tareas 
   const recoverTask = (data)=>{
     document.getElementById(data).style.opacity = "1";
     const newObjeto = [...endedTasks];
+    const newObjeto2 = [...updatedTasks];
     //ejemplo filter: const resultado = animales.filter(animal => animal != 'oso');
     const result = newObjeto.filter(endedTask => endedTask != data);
+    document.getElementById(data).style.display = "block";
     setEndedTasks(result);
-    console.log(result);
+    const result2 = newObjeto2.filter(updatedTask => updatedTask != data);
+    setUpdatedTasks(result2);
+   
   }
   return (
     <div> 
@@ -44,6 +44,13 @@ const Tasks = ({tasks, setTasks}) => {
           }}>
               Tarea:
               &nbsp;{task} 
+          </div>
+           
+        ))}
+        {updatedTasks.map((updatedTask, index) => (
+          <div id ={updatedTask} key={updatedTask} className="taskContainer2">
+              Tarea:
+              &nbsp;{updatedTask} 
           </div>
            
         ))}
